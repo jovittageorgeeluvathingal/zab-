@@ -19,10 +19,10 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'User_name', // Changed 'name' to 'User_name'
         'email',
-        'password',
-        'profile'
+        'Password', // Changed 'password' to 'Password'
+        'Role', // Added 'Role' field
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'Password', // Changed 'password' to 'Password'
         'remember_token',
     ];
 
