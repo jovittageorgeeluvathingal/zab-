@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('Companyname');
             $table->foreignId('terms_and_conditions_id')->constrained('terms_and_conditions');
             $table->timestamps();
-            $table->dateTime('accepted_time')->nullable();
+            $table->dateTime('Accepted_time')->nullable();
         });
     }
 
@@ -38,3 +38,8 @@ class CreateClientsTable extends Migration
         Schema::dropIfExists('clients');
     }
 }
+
+
+
+
+

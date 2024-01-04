@@ -15,15 +15,15 @@ class Staff extends Model
         'Phone',
         'Password',
         'Whatsapp',
-        'email',
-        'nationality',
-        'language_speak',
+        'Email',
+        'Nationality',
+        'Language_speak',
         'DOB',
         'Highest_education',
         'Documentation',
         'Experience',
-        'terms_and_conditions_id',
-        'accepted_time',
+        'Terms_and_conditions_id',
+        'Accepted_time',
     ];
 
     protected $dates = [

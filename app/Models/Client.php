@@ -17,16 +17,16 @@ class Client extends Model
         'Whatsapp',
         'Occupation',
         'Companyname',
-        'terms_and_conditions_id',
-        'accepted_time',
+        'Terms_and_conditions_id',
+        'Accepted_time',
     ];
 
     protected $dates = [
-        'accepted_time', // Accepted Time
+        'Accepted_time', // Accepted Time
     ];
 
     public function termsAndConditions()
     {
-        return $this->belongsTo(TermsAndConditions::class, 'terms_and_conditions_id', 'id');
+        return $this->belongsTo(TermsAndConditions::class, 'Terms_and_conditions_id', 'id');
     }
 }
