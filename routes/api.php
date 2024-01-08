@@ -19,9 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/termandconditions', [TermandconditionsController::class, 'getbyall']);
-Route::get('/termandconditions/{id}', [TermandconditionsController::class, 'getbyid']);
-Route::get('/termsandconditions/{id}', [TermandconditionsController::class, 'edit']);
-Route::post('/termandconditions', [TermandconditionsController::class, 'store']);
-Route::put('/termandconditions/{id}', [TermandconditionsController::class, 'update']);
-Route::delete('/termandconditions/{id}', [TermandconditionsController::class, 'delete']);
+Route::get('/termsandconditions', [TermsAndConditionsController::class, 'getbyall']);
+Route::get('/termsandconditions/{id}', [TermsAndConditionsController::class, 'getbyid']);
+Route::post('/termsandconditions/add', [TermsAndConditionsController::class, 'Insert']);
+
+Route::get('/termsandconditions/{id}', [TermsAndConditionsController::class, 'edit']); // {id means the individal editing }
+Route::post('/termsandconditions', [TermsAndConditionsController::class, 'store']);
+Route::put('/termsandconditions/{id}', [TermsAndConditionsController::class, 'update']);
+Route::delete('/termsandconditions/{id}', [TermsAndConditionsController::class, 'delete']);
