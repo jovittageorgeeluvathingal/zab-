@@ -13,7 +13,7 @@ class Staff extends Model
         'Name',
         'Address',
         'Phone',
-        'Password',
+        'Password',  
         'Whatsapp',
         'Email',
         'Nationality',
