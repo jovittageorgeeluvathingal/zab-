@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\zabevent\TermandconditionsController;
+use App\Http\Controllers\Zab\TermsAndConditionsController;
+use App\Http\Controllers\Zab\ClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,17 @@ Route::get('/termsandconditions/{id}', [TermsAndConditionsController::class, 'ed
 Route::post('/termsandconditions', [TermsAndConditionsController::class, 'store']);
 Route::put('/termsandconditions/{id}', [TermsAndConditionsController::class, 'update']);
 Route::delete('/termsandconditions/{id}', [TermsAndConditionsController::class, 'delete']);
+
+
+// client
+Route::post('/clients/add', [ClientController::class, 'Insert']);
+Route::get('/clients', [ClientController::class, 'getbyall']);
+Route::get('/clients/{id}', [ClientController::class, 'getbyid']);
+Route::put('/clients/{id}', [ClientController::class, 'update']);
+Route::delete('/clients/{id}', [ClientController::class, 'delete']);
+Route::get('/clients/{id}', [ClientController::class, 'edit']);
+
+
+// staff 
+
+
