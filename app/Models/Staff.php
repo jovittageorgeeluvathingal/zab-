@@ -10,29 +10,29 @@ class Staff extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Name',
-        'Address',
-        'Phone',
-        'Password',  
-        'Whatsapp',
-        'Email',
-        'Nationality',
-        'Language_speak',
-        'DOB',
-        'Highest_education',
-        'Documentation',
-        'Experience',
-        'Terms_and_conditions_id',
-        'Accepted_time',
+        'name',
+        'address',
+        'phone',
+        'password',  
+        'whatsapp',
+        'email',
+        'nationality',
+        'language_speak',
+        'dob',
+        'highest_education',
+        'documentation',
+        'experience',
+        'terms_and_conditions_id',
+        'accepted_time',
     ];
 
     protected $dates = [
-        'DOB', // Date of Birth
+        'dob', // Date of Birth
         'accepted_time', // Accepted Time
     ];
 
     protected $casts = [
-        'Documentation' => 'boolean', // Cast to boolean (Y/N)
+        'documentation' => 'boolean', // Cast to boolean (Y/N)
     ];
 
     public function termsAndConditions()

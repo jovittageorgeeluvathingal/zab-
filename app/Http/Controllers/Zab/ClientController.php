@@ -77,12 +77,7 @@ class ClientController extends Controller
     }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit( $id)
     {
         $defaultValues = [

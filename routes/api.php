@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Zab\StaffController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Zab\TermsAndConditionsController;
@@ -26,8 +27,8 @@ Route::get('/termsandconditions/{id}', [TermsAndConditionsController::class, 'ge
 Route::post('/termsandconditions/add', [TermsAndConditionsController::class, 'Insert']);
 
 Route::get('/termsandconditions/{id}', [TermsAndConditionsController::class, 'edit']); // {id means the individal editing }
-Route::post('/termsandconditions', [TermsAndConditionsController::class, 'store']);
-Route::put('/termsandconditions/{id}', [TermsAndConditionsController::class, 'update']);
+//Route::post('/termsandconditions', [TermsAndConditionsController::class, 'store']);
+Route::put('/termsandconditions/{id}', [TermsAndConditionsController::class, 'update']); 
 Route::delete('/termsandconditions/{id}', [TermsAndConditionsController::class, 'delete']);
 
 
@@ -35,11 +36,17 @@ Route::delete('/termsandconditions/{id}', [TermsAndConditionsController::class, 
 Route::post('/clients/add', [ClientController::class, 'Insert']);
 Route::get('/clients', [ClientController::class, 'getbyall']);
 Route::get('/clients/{id}', [ClientController::class, 'getbyid']);
-Route::put('/clients/{id}', [ClientController::class, 'update']);
+Route::post('/clients/{id}', [ClientController::class, 'update']);
 Route::delete('/clients/{id}', [ClientController::class, 'delete']);
 Route::get('/clients/{id}', [ClientController::class, 'edit']);
 
 
 // staff 
+Route::post('/staff/add', [StaffController::class, 'Insert']);//
+Route::get('/staff', [StaffController::class, 'getbyall']);
+Route::get('/staff/{id}', [StaffController::class, 'getbyid']);
+Route::get('/staff/{id}', [StaffController::class, 'edit']);
+Route::post('/staff/{id}', [StaffController::class, 'update']);
+Route::delete('/staff/{id}', [StaffController::class, 'delete']);
 
 
