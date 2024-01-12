@@ -22,35 +22,38 @@ class StaffController extends Controller
     }
 
     
-    public function Insert(Request $request)
+    public function insert(Request $request) 
 {
     // Define the validation rules
-    $validatedData = ([
+    $validatedData = [
         'name' => 'required|string',
         'address' => 'nullable|string',
         'phone' => 'nullable|string',
         'password' => 'required|string',
         'whatsapp' => 'nullable|string',
         'email' => 'required|email|unique:staff',
+
         'nationality' => 'nullable|string',
         'language_speak' => 'nullable|string',
         'dob' => 'nullable|date',
         'highest_education' => 'nullable|string',
-        'documentation' => 'nullable|boolean',
+        
+        'documentation' => 'nullable|string',
         'experience' => 'nullable|string',
-        'Terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
+        'terms_and_conditions' => 'required|exists:terms_and_conditions,id',
         'accepted_time' => 'nullable|date',
-    ]);
+    ];
     // Validate the incoming request data
     $request->validate($validatedData);
 
-    // Create a new staff instance and populate its properties
+    // Create a new TermsAndConditions instance and populate its properties
    $staff  = new Staff;
 
    $staff->name = $request->name;
    $staff->address = $request->address;
    $staff->phone = $request->phone;
-   $staff->password = $request->password;
+   $staff->password = \Hash::make ($request->password);
+
    $staff->whatsapp = $request->whatsapp;
    $staff->email = $request->email;
    $staff->nationality = $request->nationality;
@@ -59,16 +62,16 @@ class StaffController extends Controller
    $staff->highest_education = $request->highest_education ;
    $staff->documentation = $request->documentation;
    $staff->experience = $request->experience;
-   $staff->Terms_and_conditions_id = $request->Terms_and_conditions_id;
-   $staff->accepted_time = $request->accepted_time;
+   $staff->terms_and_conditions = $request->terms_and_conditions;
+   $staff->accepted_time = now();#$request->accepted_time;
 
-    
+    // Save the TermsAndConditions instance to the database
     $result = $staff->save();
     if ($result) {
         // Return the stored data in JSON format
         return response()->json(['data' => $staff], 200);
     } else {
-        // Handle the case where staff creation failed
+        // Handle the case where TermsAndConditions creation failed
         return response()->json(['error' => 'Failed to save staff data'], 500);
     }
 }
@@ -76,7 +79,7 @@ class StaffController extends Controller
     {
         $defaultValues = [
         'name' => 'required|string',
-        'address' => 'nullable|string',
+        'adress' => 'nullable|string',
         'phone' => 'nullable|string',
         'password' => 'required|string',
         'whatsapp' => 'nullable|string',
@@ -85,7 +88,7 @@ class StaffController extends Controller
         'language_speak' => 'nullable|string',
         'dob' => 'nullable|date',
         'highest_education' => 'nullable|string',
-        'documentation' => 'nullable|boolean',
+        'documentation' => 'nullable|string',
         'experience' => 'nullable|string',
         'terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
         'accepted_time' => 'nullable|date',
@@ -107,7 +110,7 @@ class StaffController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string',
-            'address' => 'nullable|string',
+            'adress' => 'nullable|string',
             'phone' => 'nullable|string',
             'password' => 'required|string',
             'whatsapp' => 'nullable|string',
@@ -115,8 +118,8 @@ class StaffController extends Controller
             'nationality' => 'nullable|string',
             'language_speak' => 'nullable|string',
             'dob' => 'nullable|date',
-            'highest_education' => 'nullable|string',
-            'documentation' => 'nullable|boolean',
+            'hightest_education' => 'nullable|string',
+            'documentation' => 'nullable|string',
             'experience' => 'nullable|string',
             'terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
             'accepted_time' => 'nullable|date',
@@ -128,11 +131,34 @@ class StaffController extends Controller
     }
 
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Staff  $staff
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id)
-    {
-        $staff = Staff::findOrFail($id);
-        $staff->delete();
+{
+    $staff = Staff::findOrFail($id);
+    $staff->delete();
 
-        return response()->json(null, 204);
+    return response()->json(['message' => 'Staff data deleted successfully'], 204);
+}
+public function status(Request $request, $id)
+{
+    $staff = Staff::findOrFail($id);
+
+    $newStatus = $request->input('active');
+
+    if ($newStatus) {
+        $staff->active = 0;
+    } else {
+        $staff->active = 1;
     }
+
+    $staff->save();
+
+    return response()->json(['message' => 'Staff status updated successfully', 'data' => $staff], 200);
+}
+
 }

@@ -33,7 +33,7 @@ Route::delete('/termsandconditions/{id}', [TermsAndConditionsController::class, 
 
 
 // client
-Route::post('/clients/add', [ClientController::class, 'Insert']);
+Route::post('/clients/add', [ClientController::class, 'insert']);
 Route::get('/clients', [ClientController::class, 'getbyall']);
 Route::get('/clients/{id}', [ClientController::class, 'getbyid']);
 Route::post('/clients/{id}', [ClientController::class, 'update']);
@@ -42,11 +42,12 @@ Route::get('/clients/{id}', [ClientController::class, 'edit']);
 
 
 // staff 
-Route::post('/staff/add', [StaffController::class, 'Insert']);//
+Route::post('/staff/add', [StaffController::class, 'insert']);  
 Route::get('/staff', [StaffController::class, 'getbyall']);
 Route::get('/staff/{id}', [StaffController::class, 'getbyid']);
 Route::get('/staff/{id}', [StaffController::class, 'edit']);
-Route::post('/staff/{id}', [StaffController::class, 'update']);
+Route::post('/staff/{id}', [StaffController::class, 'update']);  
 Route::delete('/staff/{id}', [StaffController::class, 'delete']);
+Route::post('/staff/{id}/toggle-status',[StaffController::class, 'status'] );
 
-
+ 

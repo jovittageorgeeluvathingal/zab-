@@ -47,8 +47,8 @@ class ClientController extends Controller
         'Whatsapp' => 'nullable|string',
         'Occupation' => 'nullable|string',
         'Companyname' => 'nullable|string',
-        'Terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
-        'Accepted_time' => 'nullable|date',
+        'terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
+        'Accepted_time' => 'nullable|date ',
     ]);
 
     $request->validate($validatedData);
@@ -62,8 +62,8 @@ class ClientController extends Controller
     $client->Whatsapp = $request->Whatsapp;
     $client->Occupation = $request->Occupation;
     $client->Companyname = $request->Companyname;
-    $client->Terms_and_conditions_id = $request->Terms_and_conditions_id;
-    $client->Accepted_time = $request->Accepted_time;
+    $client->terms_and_conditions_id = $request->terms_and_conditions_id;
+    $client->Accepted_time =now();
 
     // Save the Client instance to the database
     $result = $client->save();
@@ -128,7 +128,7 @@ class ClientController extends Controller
             'Whatsapp' => 'nullable|string',
             'Occupation' => 'nullable|string',
             'Companyname' => 'nullable|string',
-            'Terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
+            'terms_and_conditions_id' => 'required|exists:terms_and_conditions,id',
             'Accepted_time' => 'nullable|date',
             
         ]);

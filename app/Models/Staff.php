@@ -24,6 +24,7 @@ class Staff extends Model
         'experience',
         'terms_and_conditions_id',
         'accepted_time',
+        'active',
     ];
 
     protected $dates = [
